@@ -6,24 +6,21 @@ Sabnzbd daemon running in a container. The default paths have been altered to:
  * /config
  * /download
 
-`sabnzbd` runs as `sysadmin`, with the HTTP RPC interface listening on TCP port `8080`. The HTTP RPC interface is configured to not use authentication.
+`sabnzbd` runs with the HTTP RPC interface listening on TCP port `8080`. The HTTP RPC interface is configured to not use authentication.
 
 Assumptions
 -----------
 
 I use a NAS with a "download" share with the following structure:
 
-  Download
-  Download\Usenet
-  Download\Usenet\Complete  - Completed downloads
-  Donwload\Usenet\Watch     - Watch directory for .nzb files
-  Download\Usenet\Working   - Working directory where "in progress" files are located
+  - Download                - Completed downloads
+  - Download\Usenet         - Watch directory for .nzb files
+  - Download\Usenet\Working - Working directory where "in progress" files are located
 
-I want to run sabnzbd as the same user, "sysadmin" in my case, used to mount the NAS share to enforce some level of security.
+The `download` directory is mounted at `/mnt/download`, the `config` directory is located at `/etc/docker/sabnzbd`.
 
 Quick-start
 -----------
+docker run -d --restart always -h sabnzbd --name sabnzbd -v /mnt/download:/download -v /etc/docker/sabnzbd:/config -v /etc/localtime:/etc/localtime:ro -p 8080:8080 randomparity/docker-sabnzbd:latest
 
-    docker run -d -v /<NAS mount point>:/download -v /etc/docker/transmission:/config -v /etc/passwd:/etc/passwd:ro --user sysadmin --port 9091:9091 --port 51413:51413 --port 51413:51413/udp -h transmission --name transmission randomparity/docker-transmission
-
-Then open http://docker_host:9091/transmission/web/ in a browser.
+Then open http://docker_host:8080 in a browser.
