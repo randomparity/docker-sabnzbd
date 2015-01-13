@@ -2,20 +2,23 @@ FROM randomparity/docker-supervisor:latest
 
 MAINTAINER David Christensen <randomparity@gmail.com>
 
-# Fetch/install latest updates and install "add-apt-repository"
+ENV LAST_UPDATE_SABNZBD 2015-01-12
+
+# Install "add-apt-repository"
 RUN apt-get -qy install software-properties-common 
 
-# Add a new repository for Transmission
-RUN echo "deb http://archive.ubuntu.com/ubuntu trusty multiverse" >> /etc/apt/sources.list
+# Add the multiverse
+RUN echo "deb http://archive.ubuntu.com/ubuntu trusty multiverse" >> \
+    /etc/apt/sources.list
 
-# Add the Transmission repository and install the application
+# Add the Sabnzbd repository and install the application
 RUN add-apt-repository -y ppa:jcfp/ppa && \
     apt-get -qq update && \
     apt-get -qy install sabnzbdplus sabnzbdplus-theme-classic \
-                       sabnzbdplus-theme-mobile sabnzbdplus-theme-plush \
-                       par2 python-yenc unzip unrar
+    sabnzbdplus-theme-mobile sabnzbdplus-theme-plush \
+    par2 python-yenc unzip unrar
 
-# Clean-up any unneeded files
+# We've got everything we need so clear out the apt data
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
