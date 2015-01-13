@@ -3,8 +3,8 @@ docker-sabnzbd
 
 Sabnzbd daemon running in a container. The default paths have been altered to:
 
- * /config
- * /download
+ * `/config`
+ * `/download`
 
 `sabnzbd` runs with the HTTP RPC interface listening on TCP port `8080`. The HTTP RPC interface is configured to not use authentication.
 
@@ -21,6 +21,6 @@ The `download` directory is mounted at `/mnt/download`, the `config` directory i
 
 Quick-start
 -----------
-docker run -d --restart always -h sabnzbd --name sabnzbd -v /mnt/download:/download -v /etc/docker/sabnzbd:/config -v /etc/localtime:/etc/localtime:ro -p 8080:8080 randomparity/docker-sabnzbd:latest
+`docker run -d --restart always -h sabnzbd --name sabnzbd -v /mnt/download:/download -v /etc/docker/sabnzbd:/config -v /etc/localtime:/etc/localtime:ro -p 8080:8080 randomparity/docker-sabnzbd:latest`
 
-Then open http://docker_host:8080 in a browser.
+Then open `http://docker_host:8080` in a browser.
