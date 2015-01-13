@@ -13,7 +13,7 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu trusty multiverse" >> \
 
 # Add the Sabnzbd repository and install the application
 RUN add-apt-repository -y ppa:jcfp/ppa && \
-    apt-get -qq update && \
+    apt-get -q update && \
     apt-get -qy install sabnzbdplus sabnzbdplus-theme-classic \
     sabnzbdplus-theme-mobile sabnzbdplus-theme-plush \
     par2 python-yenc unzip unrar
