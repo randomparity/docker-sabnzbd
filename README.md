@@ -23,4 +23,4 @@ Quick-start
 -----------
 `docker run -d --restart always -h sabnzbd --name sabnzbd -v /mnt/download:/download -v /etc/docker/sabnzbd:/config -v /etc/localtime:/etc/localtime:ro -p 8080:8080 randomparity/docker-sabnzbd:latest`
 
-Then open `http://docker_host:8080` in a browser.
+Then open `http://<docker host IP>:8080` in a browser.

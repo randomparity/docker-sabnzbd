@@ -21,10 +21,10 @@ RUN add-apt-repository -y ppa:jcfp/ppa && \
 # We've got everything we need so clear out the apt data
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
+    rm -rf /var/tmp/* && \
     rm -rf /tmp/*
 
-VOLUME ["/config"]
-VOLUME ["/download"]
+VOLUME ["/config", "/download"]
 
 EXPOSE 8080
 
