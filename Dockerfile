@@ -2,14 +2,7 @@ FROM randomparity/docker-supervisor:latest
 
 MAINTAINER David Christensen <randomparity@gmail.com>
 
-ENV LAST_UPDATE_SABNZBD 2015-01-12
-
-# Install "add-apt-repository"
-RUN apt-get -qy install software-properties-common 
-
-# Add the multiverse
-RUN echo "deb http://archive.ubuntu.com/ubuntu trusty multiverse" >> \
-    /etc/apt/sources.list
+ENV LAST_UPDATE_SABNZBD 2015-01-14
 
 # Add the Sabnzbd repository and install the application
 RUN add-apt-repository -y ppa:jcfp/ppa && \
