@@ -1,18 +1,18 @@
 FROM randomparity/docker-supervisor:latest
-
 MAINTAINER David Christensen <randomparity@gmail.com>
 
-ENV LAST_UPDATE_SABNZBD 2015-01-16
+ENV SABNZBD_LAST_UPDATE 2015-01-27
 
 # Add the Sabnzbd repository and install the application
-RUN add-apt-repository -y ppa:jcfp/ppa && \
-    apt-get -q update && \
-    apt-get -qy install sabnzbdplus sabnzbdplus-theme-classic \
+RUN DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:jcfp/ppa && \
+    DEBIAN_FRONTEND=noninteractive apt-get -q update && \
+    DEBIAN_FRONTEND=noninteractive apt-get -qy install \
+    par2 unzip unrar sabnzbdplus sabnzbdplus-theme-classic \
     sabnzbdplus-theme-mobile sabnzbdplus-theme-plush \
-    par2 python-yenc unzip unrar
+    python-yenc
 
 # We've got everything we need so clear out the apt data
-RUN apt-get clean && \
+RUN DEBIAN_FRONTEND=noninteractive apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /var/tmp/* && \
     rm -rf /tmp/*
