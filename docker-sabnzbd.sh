@@ -1,0 +1,1 @@
+docker run -d --restart always -h sabnzbd --name sabnzbd -v /mnt/docker/download:/download -v /mnt/docker/sabnzbd:/config -v /etc/localtime:/etc/localtime:ro -v /etc/apt/apt-conf.d/01proxy:/etc/apt/apt-conf.d/01proxy:ro -p 8080:8080 randomparity/docker-sabnzbd:latest
